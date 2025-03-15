@@ -1,0 +1,23 @@
+name: Run Pytest on Push
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.8'
+
+    - name: Install Dependencies
+      run: |
+        pip install pytest
+
+    - name: Run Tests
+      run: pytest
